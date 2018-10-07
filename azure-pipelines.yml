@@ -8,7 +8,7 @@ pool:
 
 steps:
 - powershell: |
-    Invoke-WebRequest -Uri "https://download.qt.io/archive/online_installers/3.0/qt-unified-windows-x86-3.0.5-online.exe" -OutFile qtinstall.exe
+    Invoke-WebRequest -Uri "https://download.qt.io/archive/online_installers/3.0/qt-unified-windows-x86-3.0.5-online.exe" -OutFile "qtinstall.exe"
     qtinstall.exe --verbose --script qt-installer-script.js
     mkdir build
     cd build
