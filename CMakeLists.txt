@@ -38,19 +38,6 @@ set (CPACK_NSIS_MODIFY_PATH "ON")
 
 include (CPack)
 
-
-#=======================================
-# Dependencies
-#=======================================
-if (MINGW)
-   # Locate MINGW directories
-   string (REPLACE "/g++.exe" "" MINGW_BIN_DIR  ${CMAKE_CXX_COMPILER})
-   string (REPLACE "/bin"     "" MINGW_BASE_DIR ${MINGW_BIN_DIR})
-
-   # Make sure we can find MINGW libraries, e.g. zlib
-   set (CMAKE_PREFIX_PATH ${MINGW_BASE_DIR} )
-endif ()
-
 find_package (Qt5Core 5.4 REQUIRED)
 find_package (Qt5Widgets 5.4 REQUIRED)
 find_package (Qt5PrintSupport 5.4 REQUIRED)
