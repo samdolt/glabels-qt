@@ -189,11 +189,8 @@ def getArchitecture():
 def getABI():
     if CraftBootstrap.isWin():
         platform = "windows"
-        abi, compiler = CraftBootstrap.promptForChoice("Select compiler",
-                                                       [("Mingw-w64", ("mingw", "gcc")),
-                                                        ("Microsoft Visual Studio 2015", ("msvc2015", "cl")),
-                                                        ("Microsoft Visual Studio 2017", ("msvc2017", "cl"))],
-                                                       "Microsoft Visual Studio 2017")
+        abi = "msvc2017"
+        compiler = "cl"
         abi += f"_{getArchitecture()}"
 
     elif CraftBootstrap.isUnix():
