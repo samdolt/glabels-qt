@@ -132,12 +132,14 @@ if (!$Script:python) {
     TestAndFetchPython
 }
 &{
-$url = "https://raw.githubusercontent.com/KDE/craft/$Script:branch/setup/CraftBootstrap.py"
-Write-Host "Downloading:" $url
-(new-object net.webclient).DownloadFile("$url", "$Script:installRoot\download\CraftBootstrap.py")
+#$url = "https://raw.githubusercontent.com/KDE/craft/$Script:branch/setup/CraftBootstrap.py"
+#Write-Host "Downloading:" $url
+#(new-object net.webclient).DownloadFile("$url", "$Script:installRoot\download\CraftBootstrap.py")
+
+Copy-Item "CraftBootstrap.py" -Destination "$Script:installRoot\download\CraftBootstrap.py"
 
 Start-Sleep -s 10
-[string[]]$command = @("$Script:installRoot\download\CraftBootstrap.py", "--prefix", "$Script:installRoot", "--branch", "$Script:branch", "--dry-run", "CraftSettings.ini")
+[string[]]$command = @("$Script:installRoot\download\CraftBootstrap.py", "--prefix", "$Script:installRoot", "--branch", "$Script:branch")
 Write-Host "$Script:python" $command
 & "$Script:python" $command
 cd $Script:installRoot
