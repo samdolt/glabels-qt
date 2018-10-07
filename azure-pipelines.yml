@@ -8,10 +8,13 @@ pool:
 
 steps:
 - powershell: |
+    Write-Host "Downloading Qt installer..."
     Invoke-WebRequest -Uri "https://download.qt.io/archive/online_installers/3.0/qt-unified-windows-x86-3.0.5-online.exe" -OutFile "qtinstall.exe"
+    Write-Host "Installing Qt..."
     Start-Process -FilePath $(Join-Path -Path $pwd -ChildPath "qtinstall.exe") -ArgumentList '--verbose --script qt-installer-script.js' -Wait
     mkdir build
     cd build
+    Write-Host "Running cmake..."
     cmake .. -G "Visual Studio 15 2017 Win64"
     cmake --build . --config Release 
   displayName: 'Build'
