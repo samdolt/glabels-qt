@@ -137,7 +137,7 @@ Write-Host "Downloading:" $url
 (new-object net.webclient).DownloadFile("$url", "$Script:installRoot\download\CraftBootstrap.py")
 
 Start-Sleep -s 10
-[string[]]$command = @("$Script:installRoot\download\CraftBootstrap.py", "--prefix", "$Script:installRoot", "--branch", "$Script:branch")
+[string[]]$command = @("$Script:installRoot\download\CraftBootstrap.py", "--prefix", "$Script:installRoot", "--branch", "$Script:branch", "--dry-run")
 Write-Host "$Script:python" $command
 & "$Script:python" $command
 cd $Script:installRoot
