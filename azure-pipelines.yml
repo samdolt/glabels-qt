@@ -11,7 +11,7 @@ steps:
     Write-Host "Downloading Qt installer..."
     Invoke-WebRequest -Uri "https://download.qt.io/archive/online_installers/3.0/qt-unified-windows-x86-3.0.5-online.exe" -OutFile "qtinstall.exe"
     Write-Host "Installing Qt..."
-    Start-Process -FilePath $(Join-Path -Path $pwd -ChildPath "qtinstall.exe") -ArgumentList '--verbose --script qt-installer-script.js' -Wait
+    & $(Join-Path -Path $pwd -ChildPath "qtinstall.exe") --verbose --script qt-installer-script.js
     Get-ChildItem -Path C:\Qt
     dir
     mkdir build
