@@ -30,3 +30,7 @@ steps:
     craft --package glabels-qt
     
   displayName: 'Build'
+  
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: 'C:\CraftRoot\tmp' 
