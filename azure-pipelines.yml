@@ -9,5 +9,5 @@ pool:
 steps:
 - powershell: |
     Write-Host "Installing Craft"
-    iex install_craft.ps1
+    .\install_craft.ps1
   displayName: 'Build'
