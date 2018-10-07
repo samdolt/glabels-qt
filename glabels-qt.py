@@ -6,7 +6,7 @@ from Package.CMakePackageBase import *
 
 class subinfo(info.infoclass):
     def setTargets(self):
-        self.svnTargets['master'] = 'https://github.com/jimevins/glabels-qt.git'
+        self.svnTargets['master'] = 'https://github.com/samdolt/glabels-qt'
         self.defaultTarget = 'master'
         self.description = "glabels-qt"
 
