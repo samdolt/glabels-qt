@@ -20,6 +20,7 @@ steps:
     C:\CraftRoot\craft\craftenv.ps1
     Write-Host "Build glabels-qt"
     craft glabels-qt
+    craft nsis
     craft --package glabels-qt
     
   displayName: 'Build'
