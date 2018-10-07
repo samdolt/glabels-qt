@@ -11,4 +11,13 @@ steps:
     echo $Env:PATH
     Write-Host "Installing Craft"
     .\install_craft.ps1
+    Write-Host "Add glabels to Craft"
+    mkdir "C:\CraftRoot\etc\blueprints\locations\craft-blueprints-kde\qt-apps\glabels-qt"
+    Copy-Item "glabels-qt.py" -Destination "C:\CraftRoot\etc\blueprints\locations\craft-blueprints-kde\qt-apps\glabels-qt"
+    Write-Host "Activating craft"
+    C:\CraftRoot\craft\craftenv.ps1
+    Write-Host "Build glabels-qt"
+    craft glabels-qt
+    craft --package glabels-qt
+    
   displayName: 'Build'
