@@ -7,7 +7,9 @@ pool:
   vmImage: 'vs2017-win2016'
 
 steps:
-- script: |
+- powershell: |
+    Invoke-WebRequest -Uri "https://download.qt.io/archive/online_installers/3.0/qt-unified-windows-x86-3.0.5-online.exe" -OutFile qtinstall.exe
+    qtinstall.exe --verbose --script qt-installer-script.js
     mkdir build
     cd build
     cmake .. -G "Visual Studio 15 2017 Win64"
