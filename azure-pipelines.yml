@@ -8,6 +8,7 @@ pool:
 
 steps:
 - powershell: |
+    echo $Env:PATH
     Write-Host "Installing Craft"
     .\install_craft.ps1
   displayName: 'Build'
