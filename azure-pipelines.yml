@@ -29,6 +29,7 @@ steps:
     craft nsis
     craft --package glabels-qt
   displayName: 'Build'
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: 'C:\CraftRoot\tmp' 
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: 'C:\CraftRoot\tmp'
+  displayName: 'Publish'
