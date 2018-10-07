@@ -8,6 +8,7 @@ pool:
 
 steps:
 - powershell: |
+    echo $env:Path
     $Currentlocation=Get-Location
     Write-Host "Installing Craft"
     .\install_craft.ps1
