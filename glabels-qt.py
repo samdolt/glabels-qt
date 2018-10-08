@@ -14,6 +14,7 @@ class subinfo(info.infoclass):
         self.runtimeDependencies["libs/qt5/qtbase"] = None
         self.runtimeDependencies["libs/qt5/qtsvg"] = None
         self.runtimeDependencies["libs/qt5/qttools"] = None
+        self.runtimeDependencies["libs/qrencode"] = None
 
 
 class Package(CMakePackageBase):
