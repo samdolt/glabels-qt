@@ -16,13 +16,12 @@ steps:
     $Currentlocation=Get-Location
     Write-Host "Installing Craft"
     .\install_craft.ps1
-    Write-Host "Add glabels to Craft"
-    mkdir "C:\CraftRoot\etc\blueprints\locations\craft-blueprints-kde\qt-apps\glabels-qt"
     Write-Host "Restore PWD"
     cd -Path $Currentlocation
-    Copy-Item "glabels-qt.py" -Destination "C:\CraftRoot\etc\blueprints\locations\craft-blueprints-kde\qt-apps\glabels-qt"
     Write-Host "Activating craft"
     C:\CraftRoot\craft\craftenv.ps1
+    Write-Host "Add Craft blueprint repository"
+    craft --add-blueprint-repository https://github.com/samdolt/craft-blueprints-glabels-qt.git
     Write-Host "Build glabels-qt"
     craft glabels-qt
     craft --compile glabels-qt
