@@ -1,0 +1,35 @@
+pool:
+  vmImage: 'vs2017-win2016'
+
+steps:
+- powershell: |
+    # First we need to get craft and apply some patches that allow a non-interactive install
+    .\ci\azure-pipelines\get_craft.ps1
+    
+    # Craft need a path without Unix tools and Gcc, that come by default in 'vs2017-win2016' vm image
+    $env:Path = "C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\Scripts;C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\"
+    
+    # Craft bootstrap change the working directory, so we use a variable to store it for later use
+    #$Currentlocation=Get-Location
+
+    # Installing craft
+    python3.6 "craft/setup/CraftBootstrap.py" --prefix "C:\CraftRoot\"
+
+    # Restore working directories
+    #Write-Host "Restore PWD"
+    pwd
+    cd -Path $Currentlocation
+    Write-Host "Activating craft"
+    C:\CraftRoot\craft\craftenv.ps1
+    Write-Host "Add Craft blueprint repository"
+    craft --add-blueprint-repository https://github.com/samdolt/craft-blueprints-glabels-qt.git
+    Write-Host "Build glabels-qt"
+    craft glabels-qt
+    craft --compile glabels-qt
+    craft nsis
+    craft --package glabels-qt
+  displayName: 'Build'
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: 'C:\CraftRoot\tmp'
+  displayName: 'Publish'

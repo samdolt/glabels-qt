@@ -1,0 +1,50 @@
+From 46918f8ec248af5c56d5fc4cc53491085ee17342 Mon Sep 17 00:00:00 2001
+From: Samuel Dolt <samuel@dolt.ch>
+Date: Mon, 22 Oct 2018 13:32:03 +0200
+Subject: [PATCH] Non interactive install with MSVC2017 as default compiler
+
+---
+ setup/CraftBootstrap.py | 13 ++++++-------
+ 1 file changed, 6 insertions(+), 7 deletions(-)
+
+diff --git a/setup/CraftBootstrap.py b/setup/CraftBootstrap.py
+index bc9550680..e4e72acf0 100644
+--- a/setup/CraftBootstrap.py
++++ b/setup/CraftBootstrap.py
+@@ -73,7 +73,8 @@ class CraftBootstrap(object):
+         print()
+         while (True):
+             print(title)
+-            choice = input(promp)
++            #choice = input(promp)
++            choice = ""
+             try:
+                 choiceInt = int(choice)
+             except:
+@@ -99,7 +100,8 @@ class CraftBootstrap(object):
+         def promptDriveLetter(purpose, default):
+             while (True):
+                 print(f"Enter drive for {purpose}")
+-                drive = input(f"[Possibilities A-Z] (Default is {default}):")
++                #drive = input(f"[Possibilities A-Z] (Default is {default}):")
++                drive = ""
+                 if drive == "":
+                     return default
+                 if drivePatern.match(drive):
+@@ -187,11 +189,8 @@ def getArchitecture():
+ def getABI():
+     if CraftBootstrap.isWin():
+         platform = "windows"
+-        abi, compiler = CraftBootstrap.promptForChoice("Select compiler",
+-                                                       [("Mingw-w64", ("mingw", "gcc")),
+-                                                        ("Microsoft Visual Studio 2015", ("msvc2015", "cl")),
+-                                                        ("Microsoft Visual Studio 2017", ("msvc2017", "cl"))],
+-                                                       "Microsoft Visual Studio 2015")
++        abi = "msvc2017"
++        compiler = "cl"
+         abi += f"_{getArchitecture()}"
+ 
+     elif CraftBootstrap.isUnix():
+-- 
+2.17.1
+
